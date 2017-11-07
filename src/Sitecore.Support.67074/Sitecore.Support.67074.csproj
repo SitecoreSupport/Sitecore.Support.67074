@@ -41,43 +41,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Sitecore.Analytics">
-      <HintPath>..\packages\SC.Sitecore.Analytics.8.2.2\lib\Sitecore.Analytics.dll</HintPath>
+      <HintPath>..\packages\SC.Sitecore.Analytics.8.2.5\lib\Sitecore.Analytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.Analytics.Model">
-      <HintPath>..\packages\SC.Sitecore.Analytics.Model.8.2.2\lib\Sitecore.Analytics.Model.dll</HintPath>
+      <HintPath>..\packages\SC.Sitecore.Analytics.Model.8.2.5\lib\Sitecore.Analytics.Model.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.ContentSearch">
-      <HintPath>..\packages\SC.Sitecore.ContentSearch.8.2.2\lib\Sitecore.ContentSearch.dll</HintPath>
+      <HintPath>..\packages\SC.Sitecore.ContentSearch.8.2.5\lib\Sitecore.ContentSearch.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.Analytics">
-      <HintPath>..\packages\SC.Sitecore.ContentSearch.Analytics.8.2.2\lib\Sitecore.ContentSearch.Analytics.dll</HintPath>
+      <HintPath>..\packages\SC.Sitecore.ContentSearch.Analytics.8.2.5\lib\Sitecore.ContentSearch.Analytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\packages\SC.Sitecore.Kernel.8.2.2\lib\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\packages\SC.Sitecore.Kernel.8.2.5\lib\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.Forms.Core">
-      <HintPath>..\packages\WFFM.Sitecore.Forms.Core.8.2.1\lib\Sitecore.Forms.Core.dll</HintPath>
+      <HintPath>..\packages\WFFM.Sitecore.Forms.Core.8.2.5\lib\Sitecore.Forms.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.ListManagement">
-      <HintPath>..\packages\SC.Sitecore.ListManagement.8.2.2\lib\Sitecore.ListManagement.dll</HintPath>
+      <HintPath>..\packages\SC.Sitecore.ListManagement.8.2.5\lib\Sitecore.ListManagement.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.ListManagement.ContentSearch">
-      <HintPath>..\packages\SC.Sitecore.ListManagement.ContentSearch.8.2.2\lib\Sitecore.ListManagement.ContentSearch.dll</HintPath>
+      <HintPath>..\packages\SC.Sitecore.ListManagement.ContentSearch.8.2.5\lib\Sitecore.ListManagement.ContentSearch.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.WFFM.Abstractions">
-      <HintPath>..\packages\WFFM.Sitecore.WFFM.Abstractions.8.2.1\lib\Sitecore.WFFM.Abstractions.dll</HintPath>
+      <HintPath>..\packages\WFFM.Sitecore.WFFM.Abstractions.8.2.5\lib\Sitecore.WFFM.Abstractions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.WFFM.Actions">
-      <HintPath>..\packages\WFFM.Sitecore.WFFM.Actions.8.2.1\lib\Sitecore.WFFM.Actions.dll</HintPath>
+      <HintPath>..\packages\WFFM.Sitecore.WFFM.Actions.8.2.5\lib\Sitecore.WFFM.Actions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
