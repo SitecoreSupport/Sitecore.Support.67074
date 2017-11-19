@@ -1,9 +1,11 @@
 ﻿using Sitecore.Analytics.Tracking;
 using Sitecore.Configuration;
 using Sitecore.Data;
+using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.Eventing;
 using Sitecore.ListManagement;
+using Sitecore.ListManagement.ContentSearch;
 using Sitecore.ListManagement.ContentSearch.Model;
 using Sitecore.SecurityModel;
 using Sitecore.Support.Form.Core;
@@ -30,7 +32,24 @@ namespace Sitecore.Support.WFFM.Actions.SaveActions
       this.analyticsTracker = analyticsTracker;
       this.contactRepository = contactRepository;
     }
-
+    private void UpdateRecipientCount(string contactListID)
+    {
+      Database masterDB = null;
+      try
+      {
+        masterDB = Database.GetDatabase("master");
+        Item contactList = masterDB.GetItem(ID.Parse(contactListID));
+        int recipients = int.Parse(contactList.Fields["Recipients"].Value) + 1;
+        contactList.Editing.BeginEdit();
+        contactList.Fields["Recipients"].Value = recipients.ToString();
+        contactList.Editing.AcceptChanges();
+        contactList.Editing.EndEdit();
+      }
+      catch
+      {
+        Log.Error($"[WFFM] Unable to update the {contactListID} contact list because master database missed", this);
+      }
+    }
     public override void Execute(ID formId, AdaptedResultList adaptedFields, ActionCallContext actionCallContext = null, params object[] data)
     {
       Assert.ArgumentNotNull(adaptedFields, "fields");
@@ -38,27 +57,29 @@ namespace Sitecore.Support.WFFM.Actions.SaveActions
       Assert.IsNotNull(this.analyticsTracker.CurrentContact, "Contact cannot be null");
       if (adaptedFields.IsTrueStatement(this.ExecuteWhen))
       {
-        List<string> list = (from x in this.ContactsLists.Split(new char[] { ',' })
+        List<string> contactLists = (from x in this.ContactsLists.Split(new char[] { ',' })
                              select ID.Parse(x).ToString()).ToList<string>();
         using (new SecurityDisabler())
         {
           Contact contact = this.analyticsTracker.Current.Contact;
+          foreach (var contactList in contactLists)
+          {
+            contact.Tags.Set("ContactLists", contactList);
+            contactRepository.SaveContact(contact, true, null);
+          }
           if (Sitecore.Form.Core.Configuration.Settings.IsRemoteActions)
           {
             AddToListEvent event1 = new AddToListEvent
             {
-              ContactId = contact.ContactId,
-              Lists = list
+              ContactLists = contactLists
             };
             EventManager.QueueEvent<AddToListEvent>(event1);
           }
           else
           {
-            ListManager<ContactList, ContactData> manager = Factory.CreateObject("contactListManager", true) as ListManager<ContactList, ContactData>;
-            foreach (string str in list)
+            foreach (string contactList in contactLists)
             {
-              ContactList list2 = manager.FindById(str);
-              manager.SubscribeContact(list2, contact);
+              UpdateRecipientCount(contactList);
             }
           }
         }

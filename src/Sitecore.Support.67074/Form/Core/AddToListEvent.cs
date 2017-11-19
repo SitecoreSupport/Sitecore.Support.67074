@@ -8,9 +8,6 @@ namespace Sitecore.Support.Form.Core
   public class AddToListEvent
   {
     [DataMember]
-    public Guid ContactId { get; set; }
-
-    [DataMember]
-    public List<string> Lists { get; set; }
+    public List<string> ContactLists { get; set; }
   }
 }
